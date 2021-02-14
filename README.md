@@ -1,9 +1,11 @@
 Limitations:
-
 - The result from the calculation, max decimal places is 13.
 
 Algorithm that use to calculate PI:
 - Nilakantha infinite series
+
+Explanation:
+The server use cron to increase the Pi accuracy every minute.
 
 Prerequisites
 - Docker
@@ -24,7 +26,7 @@ cp ./.env.example ./.env
 ```
 3. Build image
 ```
-./vendor/bin/sail build
+./vendor/bin/sail build --no-cache
 ```
 
 4. Run artisan commands
