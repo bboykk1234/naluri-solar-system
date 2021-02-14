@@ -9,7 +9,36 @@ Prerequisites
 - Docker
 
 Getting started
-- ./vendor/bin/sail up -d
+1. Install packages
+```
+docker run --rm \
+-v $(pwd):/opt \
+-w /opt \
+laravelsail/php80-composer:latest \
+composer install
+```
+
+2. Create env file by copying env.example
+```
+cp ./.env.example ./.env
+```
+3. Build image
+```
+./vendor/bin/sail build
+```
+
+4. Run artisan commands
+```
+./vendor/bin/sail run --rm laravel.test php artisan key:generate
+./vendor/bin/sail run --rm laravel.test php artisan storage:link
+./vendor/bin/sail run --rm laravel.test php artisan migrate
+./vendor/bin/sail run --rm laravel.test npm install && npm run dev
+```
+
+5.  Start container
+``` 
+./vendor/bin/sail up -d
+```
 
 Assumptions
 - Radius of the sun is taken the number from nasa. https://solarsystem.nasa.gov/solar-system/sun/by-the-numbers/
