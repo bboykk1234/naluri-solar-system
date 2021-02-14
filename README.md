@@ -24,7 +24,7 @@ cp ./.env.example ./.env
 ```
 3. Build image
 ```
-./vendor/bin/sail build
+./vendor/bin/sail build --no-cache
 ```
 
 4. Run artisan commands
