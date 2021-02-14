@@ -10,3 +10,6 @@ Prerequisites
 
 Getting started
 - ./vendor/bin/sail up -d
+
+Assumptions
+- Radius of the sun is taken the number from nasa. https://solarsystem.nasa.gov/solar-system/sun/by-the-numbers/
