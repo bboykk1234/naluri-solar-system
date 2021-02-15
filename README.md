@@ -12,43 +12,41 @@ The server use cron to increase the Pi accuracy, by calculating the Pi decimal p
 
 ## Prerequisites
 - Docker
+- Docker compose
 
 ## Getting started
-1. Install packages
-```
-docker run --rm \
--v $(pwd):/opt \
--w /opt \
-laravelsail/php80-composer:latest \
-composer install
-```
-
-2. Create env file by copying env.example
+1. Create env file by copying env.example
 ```
 cp ./.env.example ./.env
 ```
-3. Build image
+
+2. Build image, this will take a while
 ```
-./vendor/bin/sail build --no-cache
+docker-compose build --no-cache
+```
+
+3. Install packages
+```
+docker-compose run --rm laravel.test composer install
 ```
 
 4. Run artisan commands
 ```
-./vendor/bin/sail run --rm laravel.test php artisan key:generate
-./vendor/bin/sail run --rm laravel.test php artisan storage:link
-./vendor/bin/sail run --rm laravel.test php artisan migrate
-./vendor/bin/sail run --rm laravel.test npm install && npm run dev
+docker-compose run --rm laravel.test php artisan key:generate
+docker-compose run --rm laravel.test php artisan storage:link
+docker-compose run --rm laravel.test php artisan migrate
+docker-compose run --rm laravel.test npm install && npm run dev
 ```
 
 5.  Start container
 ``` 
-./vendor/bin/sail up -d
+docker-compose up -d
 ```
 
-6. Access http://localhost to see the output, stay on the page, the Pi and circumference of the sun should be calculated with the most accurate value.
+6. Access http://localhost to see the output, stay on the page, the Pi and circumference of the sun should be updated every minute with the most accurate value from the server.
 
 NOTE:
-If you need to customize the port, please add `APP_PORT=8080` in your .env file, please run `./vendor/bin/sail down` and `./vendor/bin/sail up -d` to take effect, then you can access using `http://localhost:{APP_PORT}`
+If you need to customize the port, please add `APP_PORT=8080` in your .env file, please run `docker-compose down` and `docker-compose up -d` to take effect, then you can access using `http://localhost:{APP_PORT}`
 
-If got any problems during getting started, please try to run `./vendor/bin/sail down` then try again the steps above.
+If got any problems during getting started, please try to run `docker-compose down` then try again the steps above.
 
