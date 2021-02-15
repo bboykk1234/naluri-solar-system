@@ -32,10 +32,10 @@ WWWGROUP="$(id -g)" WWWUSER=${UID} docker-compose run --rm laravel.test composer
 
 4. Run artisan commands
 ```
-./vendor/bin/sail artisan key:generate
-./vendor/bin/sail artisan storage:link
-./vendor/bin/sail artisan migrate
-./vendor/bin/sail npm install && npm run dev
+./vendor/bin/sail run --rm laravel.test php artisan key:generate
+./vendor/bin/sail run --rm laravel.test php artisan storage:link
+./vendor/bin/sail run --rm laravel.test php artisan migrate
+./vendor/bin/sail run --rm laravel.test npm install && npm run dev
 ```
 
 5.  Start container
