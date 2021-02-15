@@ -2002,6 +2002,10 @@ function App() {
     }
 
     fetchData();
+    setInterval(fetchData, 60000);
+    return function () {
+      clearInterval(fetchData);
+    };
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
     className: "container-fluid flex-grow-1",

@@ -1,16 +1,19 @@
-Limitations:
-- The result from the calculation, max decimal places is 13.
+## Limitations
+- The accuracy for the Pi value, some decimal precisions at the last one or two digits not always accurate, but after calculation move on to next decimal precision, it will be corrected and accurate.
 
-Algorithm that use to calculate PI:
-- Nilakantha infinite series
+## Formula that use to calculate PI
+- Bailey-Borwein-Plouffe formula
 
-Explanation:
-The server use cron to increase the Pi accuracy every minute.
+## Assumptions
+- Radius of the sun is taken the number from nasa. https://solarsystem.nasa.gov/solar-system/sun/by-the-numbers/
 
-Prerequisites
+## Explanation
+The server use cron to increase the Pi accuracy, by calculating the Pi decimal precision incrementally every minute.
+
+## Prerequisites
 - Docker
 
-Getting started
+## Getting started
 1. Install packages
 ```
 docker run --rm \
@@ -42,7 +45,10 @@ cp ./.env.example ./.env
 ./vendor/bin/sail up -d
 ```
 
+6. Access http://localhost to see the output, stay on the page, the Pi and circumference of the sun should be calculated with the most accurate value.
+
+NOTE:
+If you need to customize the port, please add `APP_PORT=8080` in your .env file, please run `./vendor/bin/sail down` and `./vendor/bin/sail up -d` to take effect, then you can access using `http://localhost:{APP_PORT}`
+
 If got any problems during getting started, please try to run `./vendor/bin/sail down` then try again the steps above.
 
-Assumptions
-- Radius of the sun is taken the number from nasa. https://solarsystem.nasa.gov/solar-system/sun/by-the-numbers/

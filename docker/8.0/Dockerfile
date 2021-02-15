@@ -41,6 +41,12 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN mkdir -p /usr/src/php/ext/php-decimal \
+    && cd /usr/src/php/ext/php-decimal \
+    && git clone https://github.com/php-decimal/ext-decimal.git . \
+    && git checkout 1.x-php8 \
+    && docker-php-ext-install php-decimal
+
 RUN setcap "cap_net_bind_service=+ep" /usr/bin/php8.0
 
 RUN groupadd --force -g $WWWGROUP sail

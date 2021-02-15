@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PI;
-use Illuminate\Http\Request;
+use Decimal\Decimal;
 
 class SunCircumferenceController extends Controller
 {
@@ -12,13 +12,16 @@ class SunCircumferenceController extends Controller
      */
     protected const SUN_RADIUS = 695508;
 
-    public function show(Request $req)
+    public function show()
     {
         $latest_pi = PI::latest()->limit(1)->first();
 
+        $circumference_of_the_sun = new Decimal($latest_pi->value, $latest_pi->precision);
+        $circumference_of_the_sun = $circumference_of_the_sun
+            ->mul(new Decimal(self::SUN_RADIUS * 2));
         return response()->json([
             'current_pi' => $latest_pi->value,
-            'circumference_of_the_sun' =>  (self::SUN_RADIUS * $latest_pi->value) * 2,
+            'circumference_of_the_sun' =>  $circumference_of_the_sun->toString(),
         ]);
     }
 }

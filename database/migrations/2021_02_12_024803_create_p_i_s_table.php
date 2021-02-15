@@ -16,15 +16,15 @@ class CreatePISTable extends Migration
     {
         Schema::create('p_i_s', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('next_starter');
-            $table->decimal('value', 20, 13);
+            $table->unsignedInteger('precision');
+            $table->longText('value');
             $table->timestamps();
         });
 
         PI::create(
             [
-                'next_starter' => 0,
-                'value' => 3,
+                'precision' => 1,
+                'value' => '3',
             ]
         );
     }

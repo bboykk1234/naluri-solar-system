@@ -10,7 +10,7 @@ class PI extends Model
     use HasFactory;
 
     protected $fillable = [
-        'next_starter',
+        'precision',
         'value',
     ];
 }

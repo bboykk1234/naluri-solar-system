@@ -17,6 +17,12 @@ function App() {
         }
 
         fetchData();
+
+        setInterval(fetchData, 60000);
+
+        return () => {
+            clearInterval(fetchData);
+        }
     }, []);
 
     return  (

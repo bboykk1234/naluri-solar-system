@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\PI;
+use Decimal\Decimal;
 use Illuminate\Console\Command;
 
 class CalculatePI extends Command
@@ -21,10 +22,6 @@ class CalculatePI extends Command
      */
     protected $description = 'Calculate PI to increase accuracy';
 
-    /**
-     * @var integer
-     */
-    protected const INCREMENT_VALUE = 8;
 
     /**
      * Create a new command instance.
@@ -46,21 +43,37 @@ class CalculatePI extends Command
         $latest_pi = PI::latest()->limit(1)->first();
 
         $new_pi = new PI;
-        $new_pi->value = $latest_pi->value;
-        $next_starter = $latest_pi->next_starter == 0 ? 2 : $latest_pi->next_starter;
+        $new_pi->precision = $latest_pi->precision + 1;
+        $new_pi->value = $this->calculatePiUsingBBPFormula($new_pi->precision);
 
-        for ($i = 1; $i < 5; $i++) {
-            if ($i % 2 === 0) {
-                $new_pi->value -= (4 / ($next_starter * ($next_starter + 1) * ($next_starter + 2)));
-            } else {
-                $new_pi->value += (4 / ($next_starter * ($next_starter + 1) * ($next_starter + 2)));
-            }
-            $next_starter = $next_starter + 2;
-        }
-
-        $new_pi->next_starter = $next_starter;
         $new_pi->save();
 
         return 0;
+    }
+
+    /**
+     * @param integer $old_precision
+     * @param integer $new_precision
+     * @return string
+     */
+    protected function calculatePiUsingBBPFormula(int $precision)
+    {
+        $elements = [];
+        foreach (range(0, $precision) as $k) {
+            $first = (new Decimal(1, $precision))->div((new Decimal(16, $precision))->pow($k));
+            $second = (new Decimal(4, $precision))->div(new Decimal(8 * $k + 1, $precision));
+            $third = (new Decimal(2, $precision))->div(new Decimal(8 * $k + 4, $precision));
+            $fourth = (new Decimal(1, $precision))->div(new Decimal(8 * $k + 5, $precision));
+            $fifth = (new Decimal(1, $precision))->div(new Decimal(8 * $k + 6, $precision));
+            $elements[] = $first * ($second->sub($third)->sub($fourth)->sub($fifth));
+        }
+
+        $pi = new Decimal(0, $precision);
+
+        foreach ($elements as $element) {
+            $pi = $pi->add($element);
+        }
+
+        return $pi->toString();
     }
 }
