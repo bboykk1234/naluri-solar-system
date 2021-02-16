@@ -1,5 +1,5 @@
 ## Limitations
-- The accuracy for the Pi value, some decimal precisions at the last one or two digits not always accurate, but after calculation move on to next decimal precision, it will be corrected and accurate.
+- The accuracy for the Pi value, some decimal precisions at the last one or two digits not always accurate due to the float number rounding, but after calculation move on to next decimal precision, it will be corrected and accurate.
 
 ## Formula that use to calculate PI
 - Bailey-Borwein-Plouffe formula
