@@ -10018,3 +10018,7 @@ body {
   background-position: center;
   background-size: cover;
 }
+
+.word-wrap-break-word {
+  word-break: break-word;
+}

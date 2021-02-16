@@ -34,7 +34,7 @@ function App() {
                             <div className="col-md-4"><h2 className="text-white">Current Pi computed from server:</h2></div>
                         </div>
                         <div className="row">
-                            <div className="col-md-4"><h3 className="text-white">{data.current_pi}</h3></div>
+                            <div className="col-md-4 word-wrap-break-word"><h3 className="text-white">{data.current_pi}</h3></div>
                         </div>
                         <div className="row">
                             <div className="col-md-4"><h2 className="text-white">Circumference of the sun:</h2></div>
