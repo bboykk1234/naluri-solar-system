@@ -43,7 +43,7 @@ WWWGROUP="$(id -g)" WWWUSER=${UID} docker-compose run --rm laravel.test composer
 ./vendor/bin/sail up -d
 ```
 
-6. Access http://localhost to see the output, stay on the page, the Pi and circumference of the sun should be updated every minute with the most accurate value from the server.
+6. Access http://localhost to see the output, stay on the page, the Pi and circumference of the sun should be updated every minute with the most accurate value from the server. Or access http://localhost/api/circumferences to see the api output.
 
 ## Test
 So far, I have tested the calculation, it able to calculate the Pi until 10000th decimal places and the result is accurate, I have compared against records from http://www.numberworld.org/digits/Pi/, just the last few digits require more decimal places in order to increase the accuracy.
