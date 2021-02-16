@@ -2043,7 +2043,7 @@ function App() {
           className: "col-md-4",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("h3", {
             className: "text-white",
-            children: [numeral__WEBPACK_IMPORTED_MODULE_4___default()(data.circumference_of_the_sun).format('0.0000a'), " km"]
+            children: [parseInt(data.circumference_of_the_sun), " km"]
           })
         })
       })]

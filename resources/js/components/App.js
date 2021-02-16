@@ -40,7 +40,7 @@ function App() {
                             <div className="col-md-4"><h2 className="text-white">Circumference of the sun:</h2></div>
                         </div>
                         <div className="row">
-                            <div className="col-md-4"><h3 className="text-white">{numeral(data.circumference_of_the_sun).format('0.0000a')} km</h3></div>
+                            <div className="col-md-4"><h3 className="text-white">{parseInt(data.circumference_of_the_sun)} km</h3></div>
                         </div>
                     </>
                 ) : (
